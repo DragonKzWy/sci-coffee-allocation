@@ -1,15 +1,42 @@
 services:
 
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+
+    container_name: coffee_app
+
+    working_dir: /var/www/html
+
+    volumes:
+      - ./src:/var/www/html
+
+  nginx:
+    image: nginx:latest
+
+    container_name: coffee_nginx
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+    depends_on:
+      - app
+
   mysql:
     image: mysql:8.4
 
-    container_name: sci_mysql
+    container_name: coffee_mysql
 
     environment:
-      MYSQL_DATABASE: sci_coffee
-      MYSQL_USER: sci
-      MYSQL_PASSWORD: sci123
-      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: coffee_allocation
+      MYSQL_USER: coffee_user
+      MYSQL_PASSWORD: coffee_pass
+      MYSQL_ROOT_PASSWORD: root_pass
 
     ports:
       - "3306:3306"
