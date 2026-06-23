@@ -85,15 +85,26 @@ EspacoCafe -> AlocacaoCafe
 
 ### Salas
 
+* O nome da sala deve ser único.
+* A lotação da sala deve ser maior que zero.
+* Uma pessoa não pode estar em duas salas na mesma etapa.
 * Uma pessoa deve estar em uma sala na Etapa 1.
 * Uma pessoa deve estar em uma sala na Etapa 2.
 * A lotação máxima da sala não pode ser ultrapassada.
 
+
 ### Espaços de Café
 
+* O nome do espaço de café deve ser único.
+* A lotação do espaço de café deve ser maior que zero.
 * Uma pessoa deve estar em um espaço de café no Intervalo 1.
 * Uma pessoa deve estar em um espaço de café no Intervalo 2.
 * A lotação máxima do espaço de café não pode ser ultrapassada.
+
+### Etapas
+
+* Cada etapa deve possuir uma ordem única.
+* A ordem define a sequência de execução do evento.
 
 ### Integridade
 

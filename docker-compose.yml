@@ -6,6 +6,8 @@ services:
       dockerfile: docker/php/Dockerfile
 
     container_name: coffee_app
+    
+    user: "1000:1001"
 
     working_dir: /var/www/html
 
