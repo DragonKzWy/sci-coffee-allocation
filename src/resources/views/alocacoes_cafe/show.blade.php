@@ -8,6 +8,8 @@
 
 <h1>Alocação de Café</h1>
 
+@include('menu')
+
 <p>
     <strong>Pessoa:</strong>
     {{ $alocacao->pessoa->nome }} {{ $alocacao->pessoa->sobrenome }}

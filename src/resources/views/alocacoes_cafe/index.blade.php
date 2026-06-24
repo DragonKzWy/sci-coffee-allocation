@@ -8,6 +8,8 @@
 
 <h1>Alocações de Café</h1>
 
+@include('menu')
+
 <a href="/alocacoes-cafe/create">
     Nova Alocação
 </a>

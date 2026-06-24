@@ -11,6 +11,8 @@
     {{ $pessoa->sobrenome }}
 </h1>
 
+@include('menu')
+
 <h2>Salas por Etapa</h2>
 
 <table border="1" cellpadding="5">

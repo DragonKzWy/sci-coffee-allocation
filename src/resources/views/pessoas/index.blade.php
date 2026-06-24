@@ -9,6 +9,8 @@
 
 <h1>Lista de Pessoas</h1>
 
+@include('menu')
+
 <a href="/pessoas/create">
     Nova Pessoa
 </a>

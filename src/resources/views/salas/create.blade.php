@@ -9,6 +9,8 @@
 
 <h1>Cadastro de Sala</h1>
 
+@include('menu')
+
 <form method="POST" action="/salas">
     @csrf
 

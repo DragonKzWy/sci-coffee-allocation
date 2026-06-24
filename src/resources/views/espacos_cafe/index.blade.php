@@ -9,6 +9,8 @@
 
 <h1>Lista de Espaços de Café</h1>
 
+@include('menu')
+
 <a href="/espacos-cafe/create">
     Novo Espaço de Café
 </a>

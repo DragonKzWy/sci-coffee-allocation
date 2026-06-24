@@ -9,6 +9,8 @@
 
 <h1>Alocações de Sala</h1>
 
+@include('menu')
+
 <a href="/alocacoes-sala/create">
     Nova Alocação
 </a>

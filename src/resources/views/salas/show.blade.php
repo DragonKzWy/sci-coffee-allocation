@@ -8,6 +8,8 @@
 
 <h1>{{ $sala->nome }}</h1>
 
+@include('menu')
+
 <p>
     <strong>Lotação:</strong>
     {{ $sala->lotacao }}

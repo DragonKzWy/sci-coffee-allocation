@@ -8,6 +8,8 @@
 
 <h1>Nova Alocação de Café</h1>
 
+@include('menu')
+
 @if ($errors->any())
     <div style="color: red; margin-bottom: 20px;">
         <ul>

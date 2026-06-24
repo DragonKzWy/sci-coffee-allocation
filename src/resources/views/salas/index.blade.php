@@ -9,6 +9,8 @@
 
 <h1>Lista de Salas</h1>
 
+@include('menu')
+
 <a href="/salas/create">
     Nova Sala
 </a>

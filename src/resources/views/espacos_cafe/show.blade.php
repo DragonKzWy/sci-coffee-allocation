@@ -8,6 +8,8 @@
 
 <h1>{{ $espacoCafe->nome }}</h1>
 
+@include('menu')
+
 <p>
     <strong>Lotação:</strong>
     {{ $espacoCafe->lotacao }}

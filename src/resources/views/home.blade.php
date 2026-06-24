@@ -8,6 +8,8 @@
 
 <h1>Gestão de Evento Corporativo</h1>
 
+@include('menu')
+
 <p>
     Sistema para gerenciamento de participantes, salas e espaços de café de eventos corporativos.
 </p>

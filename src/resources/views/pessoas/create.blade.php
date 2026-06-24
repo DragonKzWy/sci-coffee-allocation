@@ -3,34 +3,50 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Sala</title>
+    <title>Cadastro de Pessoa</title>
 </head>
 <body>
 
-<h1>Cadastro de Sala</h1>
+<h1>Cadastro de Pessoa</h1>
 
-<form method="POST" action="/salas">
+@include('menu')
+
+<form method="POST" action="/pessoas">
     @csrf
 
-<div>
-    <label>Nome</label>
-    <input type="text" name="nome" required>
-</div>
+    <div>
+        <label>Nome</label>
+        <input
+            type="text"
+            name="nome"
+            required
+        >
+    </div>
 
-<br>
+    <br>
 
-<div>
-    <label>Lotação</label>
-    <input type="number" name="lotacao" min="1" required>
-</div>
+    <div>
+        <label>Sobrenome</label>
+        <input
+            type="text"
+            name="sobrenome"
+            required
+        >
+    </div>
 
-<br>
+    <br>
 
-<button type="submit">
-    Salvar
-</button>
+    <button type="submit">
+        Salvar
+    </button>
 
 </form>
+
+<br>
+
+<a href="/pessoas">
+    Voltar
+</a>
 
 </body>
 </html>

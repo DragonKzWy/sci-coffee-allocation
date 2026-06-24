@@ -9,6 +9,8 @@
 
 <h1>Cadastro de Espaço de Café</h1>
 
+@include('menu')
+
 <form method="POST" action="/espacos-cafe">
     @csrf
 
