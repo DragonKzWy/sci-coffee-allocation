@@ -14,6 +14,8 @@ class Sala extends Model
 
     public function alocacoesSala(): HasMany
     {
-        return $this->hasMany(AlocacaoSala::class);
+        return $this->hasMany(
+            AlocacaoSala::class
+        );
     }
 }

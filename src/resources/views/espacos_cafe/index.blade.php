@@ -24,8 +24,14 @@
 
 @foreach ($espacosCafe as $espacoCafe)
     <tr>
-        <td>{{ $espacoCafe->id }}</td>
+        <td>
+            <a href="/espacos-cafe/{{ $espacoCafe->id }}">
+                {{ $espacoCafe->id }}
+            </a>
+        </td>
+
         <td>{{ $espacoCafe->nome }}</td>
+
         <td>{{ $espacoCafe->lotacao }}</td>
     </tr>
 @endforeach

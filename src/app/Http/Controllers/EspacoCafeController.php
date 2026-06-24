@@ -33,7 +33,14 @@ class EspacoCafeController extends Controller
 
     public function show(string $id)
     {
-        return EspacoCafe::findOrFail($id);
+        $espacoCafe = EspacoCafe::with([
+            'alocacoesCafe.pessoa',
+        ])->findOrFail($id);
+
+        return view(
+            'espacos_cafe.show',
+            compact('espacoCafe')
+        );
     }
 
     public function edit(string $id)

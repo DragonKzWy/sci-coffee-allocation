@@ -33,7 +33,15 @@ class SalaController extends Controller
 
     public function show(string $id)
     {
-        return Sala::findOrFail($id);
+        $sala = Sala::with([
+            'alocacoesSala.pessoa',
+            'alocacoesSala.etapa',
+        ])->findOrFail($id);
+
+        return view(
+            'salas.show',
+            compact('sala')
+        );
     }
 
     public function edit(string $id)

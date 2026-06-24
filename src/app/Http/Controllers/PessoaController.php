@@ -21,12 +21,23 @@ class PessoaController extends Controller
             'sobrenome' => 'required|string|max:255',
         ]);
 
-        return Pessoa::create($dados);
+        $pessoa = Pessoa::create($dados);
+
+        return redirect('/pessoas');
     }
 
     public function show(string $id)
     {
-        return Pessoa::findOrFail($id);
+        $pessoa = Pessoa::with([
+            'alocacoesSala.sala',
+            'alocacoesSala.etapa',
+            'alocacoesCafe.espacoCafe',
+        ])->findOrFail($id);
+
+        return view(
+            'pessoas.show',
+            compact('pessoa')
+        );
     }
 
     public function create()

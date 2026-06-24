@@ -24,8 +24,14 @@
 
 @foreach ($pessoas as $pessoa)
     <tr>
-        <td>{{ $pessoa->id }}</td>
+        <td>
+            <a href="/pessoas/{{ $pessoa->id }}">
+                {{ $pessoa->id }}
+            </a>
+        </td>
+
         <td>{{ $pessoa->nome }}</td>
+
         <td>{{ $pessoa->sobrenome }}</td>
     </tr>
 @endforeach

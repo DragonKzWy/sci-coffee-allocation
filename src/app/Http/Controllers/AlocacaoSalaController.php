@@ -99,7 +99,10 @@ class AlocacaoSalaController extends Controller
             'etapa'
         ])->findOrFail($id);
 
-        return $alocacao;
+        return view(
+            'alocacoes_sala.show',
+            compact('alocacao')
+        );
     }
 
     public function edit(string $id)

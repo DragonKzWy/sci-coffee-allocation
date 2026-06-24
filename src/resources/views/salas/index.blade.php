@@ -22,15 +22,19 @@
         <th>Lotação</th>
     </tr>
 
+    @foreach ($salas as $sala)
+        <tr>
+            <td>
+                <a href="/salas/{{ $sala->id }}">
+                    {{ $sala->id }}
+                </a>
+            </td>
 
-@foreach ($salas as $sala)
-    <tr>
-        <td>{{ $sala->id }}</td>
-        <td>{{ $sala->nome }}</td>
-        <td>{{ $sala->lotacao }}</td>
-    </tr>
-@endforeach
+            <td>{{ $sala->nome }}</td>
 
+            <td>{{ $sala->lotacao }}</td>
+        </tr>
+    @endforeach
 
 </table>
 

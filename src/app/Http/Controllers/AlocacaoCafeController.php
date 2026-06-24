@@ -95,7 +95,10 @@ class AlocacaoCafeController extends Controller
             'espacoCafe'
         ])->findOrFail($id);
 
-        return $alocacao;
+        return view(
+            'alocacoes_cafe.show',
+            compact('alocacao')
+        );
     }
 
     public function edit(string $id)
