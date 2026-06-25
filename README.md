@@ -1,179 +1,238 @@
-# Sistema de Gerenciamento de Treinamento
+# Sistema de Gerenciamento de Evento Corporativo
 
-Aplicação desenvolvida em Laravel para gerenciamento de participantes, salas e espaços de café de um evento corporativo.
+Aplicação desenvolvida em **Laravel** para gerenciamento de participantes, salas e espaços de café de um evento corporativo.
 
-O sistema permite cadastrar participantes, salas e espaços de café, realizar alocações respeitando regras de lotação e consultar a distribuição dos participantes ao longo das etapas do evento.
-
----
-
-## Tecnologias Utilizadas
-
-- PHP 8.3
-- Laravel 13
-- MySQL 8
-- Docker
-- Docker Compose
-- Blade Templates
+O sistema permite cadastrar participantes, salas e espaços de café, realizar a distribuição dos participantes respeitando regras de negócio e consultar as alocações realizadas durante o evento.
 
 ---
 
-## Funcionalidades
+# Tecnologias Utilizadas
 
-### Cadastro de Pessoas
+* PHP 8.3
+* Laravel 13
+* MySQL 8
+* Docker
+* Docker Compose
+* Blade Templates
+
+---
+
+# Arquitetura
+
+A aplicação foi desenvolvida utilizando o padrão **MVC (Model-View-Controller)** fornecido pelo Laravel.
+
+A estrutura do projeto é composta por:
+
+* **Models**: representam as entidades do domínio da aplicação.
+* **Controllers**: implementam as regras de negócio.
+* **Views (Blade)**: responsáveis pela interface do usuário.
+* **Migrations**: criação e versionamento do banco de dados.
+* **Seeders**: inserção de dados iniciais necessários para execução do sistema.
+
+---
+
+# Funcionalidades
+
+## Cadastro de Pessoas
+
 Permite cadastrar participantes informando:
 
-- Nome
-- Sobrenome
+* Nome
+* Sobrenome
 
 ---
 
-### Cadastro de Salas
+## Cadastro de Salas
+
 Permite cadastrar salas do evento informando:
 
-- Nome
-- Lotação máxima
+* Nome
+* Lotação máxima
 
 ---
 
-### Cadastro de Espaços de Café
-Permite cadastrar espaços de café informando:
+## Cadastro de Espaços de Café
 
-- Nome
-- Lotação máxima
+Permite cadastrar espaços destinados aos intervalos do evento informando:
 
----
-
-### Alocação de Salas
-Permite associar participantes às salas em cada etapa do evento.
-
-Regras implementadas:
-
-- Um participante não pode estar em duas salas na mesma etapa.
-- A lotação máxima da sala é respeitada.
+* Nome
+* Lotação máxima
 
 ---
 
-### Alocação de Espaços de Café
-Permite associar participantes aos espaços de café em cada intervalo.
+## Alocação de Salas
 
-Regras implementadas:
+Permite distribuir participantes nas salas durante cada etapa do treinamento.
 
-- Um participante não pode estar em dois espaços de café no mesmo intervalo.
-- A lotação máxima do espaço de café é respeitada.
+### Regras implementadas
+
+* Um participante não pode estar em duas salas na mesma etapa.
+* A lotação máxima da sala é respeitada.
 
 ---
 
-### Consultas
+## Alocação de Espaços de Café
 
-#### Consulta de Pessoa
+Permite distribuir participantes nos espaços de café durante cada intervalo.
+
+### Regras implementadas
+
+* Um participante não pode estar em dois espaços de café no mesmo intervalo.
+* A lotação máxima do espaço de café é respeitada.
+
+---
+
+# Consultas Disponíveis
+
+## Consulta de Pessoa
+
 Exibe:
 
-- Salas atribuídas por etapa.
-- Espaços de café atribuídos por intervalo.
-
-#### Consulta de Sala
-Exibe:
-
-- Lista de participantes alocados por etapa.
-
-#### Consulta de Espaço de Café
-Exibe:
-
-- Lista de participantes alocados por intervalo.
+* Salas atribuídas por etapa.
+* Espaços de café atribuídos por intervalo.
 
 ---
 
-## Modelagem
+## Consulta de Sala
 
-### Pessoa
+Exibe:
 
-- id
-- nome
-- sobrenome
-
-### Sala
-
-- id
-- nome
-- lotacao
-
-### EspacoCafe
-
-- id
-- nome
-- lotacao
-
-### Etapa
-
-- id
-- nome
-- ordem
-
-### AlocacaoSala
-
-- pessoa_id
-- sala_id
-- etapa_id
-
-### AlocacaoCafe
-
-- pessoa_id
-- espaco_cafe_id
-- intervalo
+* Participantes alocados em cada etapa.
 
 ---
 
-## Estrutura do Projeto
+## Consulta de Espaço de Café
 
-```
+Exibe:
+
+* Participantes alocados em cada intervalo.
+
+---
+
+# Modelagem
+
+## Pessoa
+
+| Campo     | Tipo    |
+| --------- | ------- |
+| id        | bigint  |
+| nome      | varchar |
+| sobrenome | varchar |
+
+---
+
+## Sala
+
+| Campo   | Tipo    |
+| ------- | ------- |
+| id      | bigint  |
+| nome    | varchar |
+| lotacao | integer |
+
+---
+
+## EspacoCafe
+
+| Campo   | Tipo    |
+| ------- | ------- |
+| id      | bigint  |
+| nome    | varchar |
+| lotacao | integer |
+
+---
+
+## Etapa
+
+| Campo | Tipo    |
+| ----- | ------- |
+| id    | bigint  |
+| nome  | varchar |
+| ordem | integer |
+
+---
+
+## AlocacaoSala
+
+Relaciona:
+
+* Pessoa
+* Sala
+* Etapa
+
+---
+
+## AlocacaoCafe
+
+Relaciona:
+
+* Pessoa
+* Espaço de Café
+* Intervalo
+
+---
+
+# Estrutura do Projeto
+
+```text
 app/
-├── Http/Controllers
-├── Models
+├── Http/
+│   └── Controllers/
+├── Models/
 
 database/
-├── migrations
-├── seeders
+├── migrations/
+└── seeders/
 
-resources/views/
-├── pessoas
-├── salas
-├── espacos_cafe
-├── alocacoes_sala
-├── alocacoes_cafe
+resources/
+└── views/
+    ├── pessoas/
+    ├── salas/
+    ├── espacos_cafe/
+    ├── alocacoes_sala/
+    └── alocacoes_cafe/
 ```
 
 ---
 
-## Executando o Projeto
+# Executando o Projeto
 
-### Pré-requisitos
+## Pré-requisitos
 
-- Docker
-- Docker Compose
-- Git
+* Docker
+* Docker Compose
+* Git
 
-### Clonar o repositório
+---
 
-```
+## Clonar o repositório
+
+```bash
 git clone https://github.com/DragonKzWy/sci-coffee-allocation.git
+
 cd sci-coffee-allocation
 ```
 
-### Subir os containers
+---
 
-```
+## Subir os containers
+
+```bash
 docker compose up -d
 ```
 
-### Executar migrations e seeders
+---
 
-> Atenção: este comando redefine o banco de dados.
+## Executar as migrations e seeders
 
-```
+> **Atenção:** este comando recria completamente o banco de dados.
+
+```bash
 docker compose exec app php artisan migrate:fresh --seed
 ```
 
-### Acessar a aplicação
+---
+
+## Acessar a aplicação
 
 ```
 http://localhost:8080
@@ -181,36 +240,88 @@ http://localhost:8080
 
 ---
 
-## Dados Iniciais
+# Dados Iniciais
 
-O projeto utiliza Seeder para criar automaticamente as etapas do evento:
+O projeto utiliza um Seeder para criar automaticamente as etapas do evento.
 
-- Etapa 1
-- Etapa 2
+Após executar:
 
-Esse dado é carregado ao executar:
-
-```
+```bash
 php artisan migrate:fresh --seed
 ```
 
+serão criadas automaticamente:
+
+* Etapa 1
+* Etapa 2
+
 ---
 
-## Regras de Negócio Implementadas
+# Validações Implementadas
+
+## Pessoas
+
+* Nome obrigatório.
+* Sobrenome obrigatório.
+
+---
+
+## Salas
+
+* Nome único.
+* Lotação mínima de um participante.
+
+---
+
+## Espaços de Café
+
+* Nome único.
+* Lotação mínima de um participante.
+
+---
+
+## Alocações
 
 ### Salas
 
-- Uma pessoa não pode estar em duas salas na mesma etapa.
-- A lotação da sala não pode ser excedida.
+* Impede que uma pessoa seja alocada em duas salas na mesma etapa.
+* Impede exceder a capacidade máxima da sala.
 
 ### Espaços de Café
 
-- Uma pessoa não pode estar em dois espaços de café no mesmo intervalo.
-- A lotação do espaço de café não pode ser excedida.
+* Impede que uma pessoa seja alocada em dois espaços de café no mesmo intervalo.
+* Impede exceder a capacidade máxima do espaço de café.
 
 ---
 
-## Autor
-Wesley Santos da Silva
+# Fluxo da Aplicação
 
-Analista de Sistemas com experiência em suporte, infraestrutura e desenvolvimento de soluções utilizando tecnologias web e ambientes Linux.
+1. Cadastrar participantes.
+2. Cadastrar salas.
+3. Cadastrar espaços de café.
+4. Distribuir participantes nas salas por etapa.
+5. Distribuir participantes nos espaços de café por intervalo.
+6. Consultar as distribuições realizadas.
+
+---
+
+# Melhorias Futuras
+
+Algumas funcionalidades que poderiam ser adicionadas em versões futuras:
+
+* Interface responsiva utilizando Bootstrap ou Tailwind CSS.
+* Autenticação de usuários.
+* Distribuição automática de participantes.
+* Dashboard com indicadores do evento.
+* Testes automatizados (PHPUnit).
+* API REST para integração com outros sistemas.
+
+---
+
+# Autor
+
+**Wesley Santos da Silva**
+
+Analista de Sistemas com experiência em suporte técnico, infraestrutura e desenvolvimento de aplicações web.
+
+GitHub: https://github.com/DragonKzWy
